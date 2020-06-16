@@ -14,11 +14,13 @@ import {MatButtonModule} from '@angular/material/button';
 
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
+import { DishItemComponent } from './menu/dish-item/dish-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    DishItemComponent
   ],
   imports: [
     BrowserModule,
