@@ -6,6 +6,7 @@ import { Comment } from '../../shared/comments';
 import { DishService } from '../../services/dish.service'
 import { switchMap } from 'rxjs/operators';
 import { FormGroup,FormBuilder, Validator, Validators } from '@angular/forms';
+import { visibility } from '../../../animations/app.animations';
 
 
  
@@ -13,7 +14,10 @@ import { FormGroup,FormBuilder, Validator, Validators } from '@angular/forms';
   selector: 'app-dish-item',
   templateUrl: './dish-item.component.html',
   styleUrls: ['./dish-item.component.scss'],
-  providers: [DatePipe]
+  providers: [DatePipe],
+  animations: [
+    visibility()
+  ]
 })
 export class DishItemComponent implements OnInit {
 
@@ -29,6 +33,7 @@ export class DishItemComponent implements OnInit {
 
   commentForm: FormGroup;
   comment: Comment;
+  visibility = 'shown';
   
   formErrors = {
     'author': '',
@@ -66,11 +71,13 @@ export class DishItemComponent implements OnInit {
     });
 
       this.route.params.subscribe( (params: Params) => {
+        this.visibility = 'hidden'; 
         this.selectedDish = null;
         this.dishService.getDish(params['id'])
         .subscribe((dish) => {
           this.selectedDish = dish;
           this.setPrevNext(dish);
+          this.visibility = 'shown';
         },(error)=> {
           this.errMess = <any>error;
         });

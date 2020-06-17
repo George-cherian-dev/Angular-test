@@ -4,9 +4,9 @@
     fxLayout.xs="column"
     fxLayoutAlign.gt-md="none start"
     fxLayoutGap="10px" 
-    fxLayoutGap.xs="0" *ngIf="selectedDish">
+    fxLayoutGap.xs="0"  [@visibility]="visibility">>
 
-  <div fxFlex="70">
+  <div fxFlex="70" *ngIf="selectedDish"> 
     <mat-card>
         <mat-card-header>
             <mat-card-title>
@@ -31,7 +31,7 @@
   <div fxFlex="70" 
     fxLayout="column"
     fxLayoutAlign="none start"
-    fxLayoutGap="50px" 
+    fxLayoutGap="50px"  *ngIf="selectedDish"
   >
 
     <h2  style="top:30px; position:relative;"> Comments</h2>

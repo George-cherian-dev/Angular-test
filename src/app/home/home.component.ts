@@ -5,11 +5,15 @@ import { LeaderService } from '../services/leader.service';
 import { Promotion } from '../shared/promotionModel';
 import { Dish } from '../shared/dish';
 import { Leader } from '../shared/leaderModel';
+import { expand } from '../../animations/app.animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+      animations: [
+        expand()
+      ]
 })
 export class HomeComponent implements OnInit {
 

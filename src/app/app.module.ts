@@ -37,6 +37,7 @@ import { LeaderService } from './services/leader.service';
 import { PromotionService } from './services/promotion.service';
 import { ProcessHttpMessageService } from './services/process-http-message.service';
 import { environment } from '../environments/environment';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 
@@ -52,7 +53,8 @@ import { environment } from '../environments/environment';
     AboutComponent,
     ContactComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,7 @@
     <div fxFlex *ngIf="dishes">
 
         <mat-grid-list cols="2" rowHeight="200px">
-            <mat-grid-tile *ngFor ="let dishitem of dishes" [routerLink]="['/dishDetail',dishitem.id]">
+            <mat-grid-tile *ngFor ="let dishitem of dishes" [routerLink]="['/dishDetail',dishitem.id]" appHighlight>
                 <img height ="200px" matListAvatar src="{{ baseURL + dishitem.image}}" alt="{{dishitem.name}}">
                 <mat-grid-tile-footer>
                     <h1 matLine>
