@@ -9,11 +9,12 @@ import { Feedback,ContactType } from '../shared/feedbackModel'
 })
 export class ContactComponent implements OnInit {
 
-  feedbackForm: FormGroup;
-  feedback: Feedback;
   contactType = ContactType;
   @ViewChild('fform') feedbackFormDirective;
 
+  feedbackForm: FormGroup;
+  feedback: Feedback;
+  
   formErrors = {
     'firstname': '',
     'lastname': '',

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
-import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY_FACTORY } from '@angular/cdk/overlay/overlay-directives';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -12,8 +12,8 @@ import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY_FACTORY } from '@angular/cdk/over
 export class MenuComponent implements OnInit {
 
   dishes: Dish [];
-
-  selectedDish: Dish ;
+  baseURL = environment.baseUrl;
+  errMess: string;
 
   constructor(private dishService:DishService) {
 
@@ -22,19 +22,11 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     this.dishService.getDishes()
     .subscribe((dishes) => {
-      this.dishes = dishes
+      this.dishes = dishes;
     },(error)=> {
-      console.log(error);
+      this.errMess = <any>error;
     })
     ;
   }
   
-  onSelectDish(selectedDishItem:Dish){
-    if(this.selectedDish === selectedDishItem){
-      this.selectedDish = null;
-      return;
-    }
-    this.selectedDish = selectedDishItem
-    console.log(this.selectedDish.name)
-  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Params,ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common'
 import { Dish, } from '../../shared/dish';
@@ -21,6 +21,7 @@ export class DishItemComponent implements OnInit {
   dishIds: string [];
   prev: number;
   next:number;
+  errMess: string;
 
   
   @ViewChild('fform') commentFormDirective;
@@ -49,7 +50,9 @@ export class DishItemComponent implements OnInit {
     private route: ActivatedRoute,
     private location:Location,
     private fb: FormBuilder,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    @Inject('BaseURL') public baseURL
+
   ) { 
     this.createForm();
   }
@@ -68,7 +71,7 @@ export class DishItemComponent implements OnInit {
           this.selectedDish = dish;
           this.setPrevNext(dish);
         },(error)=> {
-          console.log(error);
+          this.errMess = <any>error;
         });
       }
       );
@@ -104,7 +107,7 @@ export class DishItemComponent implements OnInit {
         }
       }
     }
-    debugger; 
+    
     if(this.commentForm.valid){
       let intermediateComment = this.commentForm.value;
       intermediateComment['date'] = this.datepipe.transform(new Date(), 'MMM dd yyyy') ;

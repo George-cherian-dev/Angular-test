@@ -29,11 +29,16 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSliderModule} from '@angular/material/slider';
+import { HttpClientModule } from '@angular/common/http';
 
 import 'hammerjs';
 import { DishService } from './services/dish.service';
 import { LeaderService } from './services/leader.service';
 import { PromotionService } from './services/promotion.service';
+import { ProcessHttpMessageService } from './services/process-http-message.service';
+import { environment } from '../environments/environment';
+
+
 
 
 @NgModule({
@@ -69,12 +74,16 @@ import { PromotionService } from './services/promotion.service';
     MatSelectModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
-    MatSliderModule
+    MatSliderModule,
+    HttpClientModule
   ],
   providers: [
     DishService,
     LeaderService,
-    PromotionService
+    PromotionService,
+    ProcessHttpMessageService,
+    {provide: 'BaseURL', useValue: environment.baseUrl},
+    {provide: 'environment', useValue: environment}
   ],
   entryComponents:[
     LoginComponent
