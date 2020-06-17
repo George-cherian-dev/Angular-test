@@ -23,11 +23,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import { MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';import { MatDialogModule} from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import 'hammerjs';
 import { DishService } from './services/dish.service';
@@ -66,7 +66,8 @@ import { PromotionService } from './services/promotion.service';
     MatCheckboxModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     DishService,

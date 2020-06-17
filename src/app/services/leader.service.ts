@@ -9,12 +9,24 @@ export class LeaderService {
 
     constructor() { }
     getLeaders() : Promise<Leader []>{
-      return Promise.resolve(LEADERS);
+      return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+          resolve(LEADERS);
+        }, 1500);
+      });
     }
     getLeader(id:string): Promise<Leader> {
-      return  Promise.resolve(LEADERS.filter((Leader) => {return Leader.id === id})[0]);
+      return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+          resolve(LEADERS.filter((Leader) => {return Leader.id === id})[0]);
+        }, 1500);
+      });
     }
     getFeaturedLeader(): Promise<Leader> {
-      return  Promise.resolve(LEADERS.filter((Leader) => Leader.featured)[0]);
+      return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+          resolve(LEADERS.filter((Leader) => Leader.featured)[0])
+        }, 1500);
+      });
     }
 }
