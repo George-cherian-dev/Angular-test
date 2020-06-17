@@ -1,3 +1,5 @@
+import { Comment } from '../shared/comments';
+
 export class Dish{
     id:string;
     name:string;
@@ -8,12 +10,4 @@ export class Dish{
     price:string;
     description:string;
     comments:Comment [];
-}
-
-export class Comment{
-    
-    rating:number;
-    comment: string;
-    author: string;
-    date: string;
 }

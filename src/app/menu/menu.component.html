@@ -8,15 +8,12 @@
     <div fxFlex>
 
         <mat-grid-list cols="2" rowHeight="200px">
-            <mat-grid-tile *ngFor ="let dishitem of dishes">
+            <mat-grid-tile *ngFor ="let dishitem of dishes" (click)='onSelectDish(dishitem)'>
                 <img height ="200px" matListAvatar src={{dishitem.image}} alt={{dishitem.name}}>
                 <mat-grid-tile-footer>
                     <h1 matLine>
                         {{ dishitem.name | uppercase }}
                     </h1>
-                    <!--<p matLine>
-                        {{ dishitem.description}}
-                    </p> -->
 
                 </mat-grid-tile-footer>
             </mat-grid-tile > 
@@ -24,7 +21,7 @@
     </div>
 
     <div fxFlex *ngIf = "selectedDish">
-       <app-dish-item></app-dish-item>
+       <app-dish-item [selectedDish]="selectedDish"></app-dish-item>
     </div>
 </div>
 
