@@ -23,6 +23,10 @@ export class MenuComponent implements OnInit {
   }
   
   onSelectDish(selectedDishItem:Dish){
+    if(this.selectedDish === selectedDishItem){
+      this.selectedDish = null;
+      return;
+    }
     this.selectedDish = selectedDishItem
     console.log(this.selectedDish.name)
   }
