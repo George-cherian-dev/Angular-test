@@ -21,7 +21,14 @@ export class DishItemComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.Route.snapshot.params['id'];
-    this.selectedDish = this.dishService.getDish(id);
+    this.dishService.getDish(id)
+    .then((dish) => {
+      this.selectedDish = dish
+    })
+    .catch((error)=> {
+      console.log(error);
+    })
+    ;
   }
 
   goBack(){
