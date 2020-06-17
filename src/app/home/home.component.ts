@@ -27,24 +27,21 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
      this.dishService.getFeaturedDish()
-     .then((dish) =>{
+     .subscribe((dish) =>{
       this.dish = dish
-    })
-    .catch((error) => {
+    },(error) => {
 
     });
     this.promotionService.getFeaturedPromotion()
-    .then((promotion) =>{
+    .subscribe((promotion) =>{
      this.promotion = promotion
-   })
-   .catch((error) => {
+   },(error) => {
 
    });
     this.leaderService.getFeaturedLeader()
-    .then((leader) =>{
+    .subscribe((leader) =>{
      this.leader = leader
-   })
-   .catch((error) => {
+   },(error) => {
 
    });
   }
