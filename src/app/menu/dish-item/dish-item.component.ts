@@ -22,6 +22,7 @@ export class DishItemComponent implements OnInit {
   prev: number;
   next:number;
   errMess: string;
+  errMessUpd: string;
 
   
   @ViewChild('fform') commentFormDirective;
@@ -129,19 +130,24 @@ export class DishItemComponent implements OnInit {
   onSubmit(){
     let intermediateComment = this.commentForm.value;
     intermediateComment['date'] = this.datepipe.transform(new Date(), 'MMM dd yyyy') ;
-    this.comment = null;
-    this.selectedDish.comments.push(intermediateComment);
+    // this.comment = null;
+    // this.selectedDish.comments.push(intermediateComment);
+    let newDish = this.selectedDish
+    newDish.comments.push(intermediateComment);
+    this.dishService.putDish(newDish)
+    .subscribe((dish) => {
+      this.selectedDish = dish;
+    },(error)=> {
+      this.errMessUpd = <any>error;
+    });
 
+    this.commentFormDirective.resetForm(); 
+    this.onValueChanged();
     this.commentForm.reset({
       author:'',
         rating:5,
         comment: ''
     });
-    this.commentFormDirective.resetForm(); 
-    this.onValueChanged();
-    this.commentForm.patchValue({
-      rating:5
-    })
   }
 
 }
