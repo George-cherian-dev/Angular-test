@@ -1,6 +1,9 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Params,ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common'
 import { Dish } from '../../shared/dish';
-
+import { DishService } from '../../services/dish.service'
+ 
 @Component({
   selector: 'app-dish-item',
   templateUrl: './dish-item.component.html',
@@ -8,13 +11,22 @@ import { Dish } from '../../shared/dish';
 })
 export class DishItemComponent implements OnInit {
 
-  @Input() 
   selectedDish: Dish ;
 
-  constructor() { }
+  constructor(
+    private dishService:DishService,
+    private Route: ActivatedRoute,
+    private location:Location
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.selectedDish.comments)
+    let id = this.Route.snapshot.params['id'];
+    console.log(id);
+    this.selectedDish = this.dishService.getDish(id);
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }
