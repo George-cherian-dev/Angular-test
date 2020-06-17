@@ -36,9 +36,13 @@
     </div>
   </div>
 
-  <div fxFlex fxFlexOffset="20px" class="form-size">
+  <div fxFlex fxFlexOffset="20px" class="form-size" 
+      fxLayout="column"
+      fxLayoutAlign="none start"
+      fxLayoutGap="10px" 
+  >
       <h3> Send us your feedback</h3>
-      <form novalidate [formGroup]="feedbackForm" #fform ="ngForm" (ngSubmit)="onSubmit()">
+      <form novalidate [formGroup]="feedbackForm" #fform ="ngForm" (ngSubmit)="onSubmit()" *ngIf="dataReady && !(feedback)" style="width:100%;">
           <p>
               <mat-form-field   class = "half-width">
                   <input matInput formControlName="firstname" placeholder="First Name" name="firstname" type="text" >
@@ -86,5 +90,63 @@
           </p>
           <button mat-button type="submit" class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
       </form>
+      <div *ngIf=" dataReady && feedback">
+        
+          <div 
+                fxLayout="column"
+                fxLayoutAlign="none start"
+                fxLayoutGap="0px" 
+           >
+              
+             <h3> Your Submission</h3>
+                  <div >
+                    <p matLine > 
+                        First Name : {{feedback.firstname}}
+                    </p>  
+                </div>
+                <div >
+                  <p matLine > 
+                      Last Name : {{feedback.lastname}}
+                  </p>  
+              </div>
+              <div >
+                <p matLine > 
+                    Tel. Num. : {{feedback.telnum}}
+                </p>  
+              </div>
+              <div >
+                <p matLine > 
+                    Email : {{feedback.email}}
+                </p>  
+              </div>
+              <div >
+                <p matLine>
+                    Contact You? : {{feedback.agree}}
+                </p>  
+              </div>
+              <div >
+                <p matLine> 
+                    How? : {{feedback.contacttype}}
+                </p>  
+              </div>
+              <div >
+                <p matLine> 
+                    Feedback : {{feedback.message}}
+                </p>  
+              </div>
+        </div>
+      </div>
+      
+        <div fxFlex *ngIf=" ! (dataReady || errMsg)">
+          <h4>Submitting Form</h4>
+          <mat-spinner>
+        
+          </mat-spinner>
+        </div>
+        
+      <div fxFlex *ngIf="errMsg">
+        <h2>Error</h2>
+        <h4>{{errMsg}}</h4>
+      </div>
   </div>
 </div>
