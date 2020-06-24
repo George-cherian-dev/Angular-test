@@ -6,7 +6,7 @@ import { Comment } from '../../shared/comments';
 import { DishService } from '../../services/dish.service'
 import { switchMap } from 'rxjs/operators';
 import { FormGroup,FormBuilder, Validator, Validators } from '@angular/forms';
-import { visibility } from '../../../animations/app.animations';
+import { visibility, flyInOut, expand } from '../../../animations/app.animations';
 
 
  
@@ -15,8 +15,14 @@ import { visibility } from '../../../animations/app.animations';
   templateUrl: './dish-item.component.html',
   styleUrls: ['./dish-item.component.scss'],
   providers: [DatePipe],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
   animations: [
-    visibility()
+      flyInOut(),
+      visibility(),
+      expand()
   ]
 })
 export class DishItemComponent implements OnInit {

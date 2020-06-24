@@ -7,7 +7,11 @@ import { FeedbackService } from '../services/feedback.service';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss'],
+  styleUrls: ['./contact.component.scss'],  
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
   animations: [
     expand(),
     flyInOut()
@@ -95,7 +99,7 @@ export class ContactComponent implements OnInit {
     }
   }
   onSubmit(){
-    this.feedback = this.feedbackForm.value;
+    let Tempfeedback:Feedback = this.feedbackForm.value;
     this.dataReady = false ;
     this.feedbackForm.reset({
         firstname:'',
@@ -109,7 +113,7 @@ export class ContactComponent implements OnInit {
     this.feedbackFormDirective.resetForm(); 
     this.onValueChanged();
 
-    this.feedbackService.postFeedback(this.feedback).subscribe((feedback) =>{
+    this.feedbackService.postFeedback(Tempfeedback).subscribe((feedback) =>{
       this.feedback = feedback;
       this.dataReady = true;
       
@@ -118,6 +122,10 @@ export class ContactComponent implements OnInit {
     },(error) => {
  
      this.errMsg = <any>error;
+     setTimeout(() => {  
+       this.dataReady = true;
+       this.errMsg = '';
+     },5000);
     });
   }
   
