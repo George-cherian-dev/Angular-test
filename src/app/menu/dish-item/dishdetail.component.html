@@ -33,23 +33,16 @@
   >
 
     <h2  style="top:30px; position:relative;"> Comments</h2>
-    <div 
-    fxLayout="column"
-    fxLayoutAlign="none start"
-    fxLayoutGap="10px" 
-    style="padding-left:20px;"
-    >
-            
-        <div *ngFor ="let commentRow of selectedDish.comments" >
-
-            <p matLine style="height:50px;"> 
-                {{ commentRow.comment }} <br>
-                {{commentRow.rating}} Stars <br>
-            -- {{commentRow.author}} {{commentRow.date | date:'MMMM dd, yyyy'}} <br>
-                                
-            </p>  
-        </div>
-    </div>
+        <mat-list>
+                    <mat-list-item style="height:70px;" *ngFor ="let commentRow of selectedDish.comments" >
+                        <p matLine > 
+                            {{ commentRow.comment }} <br>
+                            {{commentRow.rating}} Stars <br>
+                        -- {{commentRow.author}} {{commentRow.date | date:'MMMM dd, yyyy'}} <br>
+                                            
+                        </p>  
+                    </mat-list-item>
+        </mat-list>
                     
   </div>
 
