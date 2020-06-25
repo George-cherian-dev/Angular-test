@@ -4,7 +4,7 @@ import { PromotionService } from '../services/promotion.service';
 import { LeaderService } from '../services/leader.service';
 import { Promotion } from '../shared/promotionModel';
 import { Dish } from '../shared/dish';
-import { Leader } from '../shared/leaderModel';
+import { Leader } from '../shared/leader';
 
 @Component({
   selector: 'app-home',
